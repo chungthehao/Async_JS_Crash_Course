@@ -13,28 +13,17 @@ function getPosts() {
         });
 
         document.body.innerHTML = output;
-    }, 2000);
+    }, 2500);
 }
 
 function createPost(post) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            posts.push(post);
-
-            const error = false; // giả sử
-
-            if ( ! error) {
-                resolve();
-            } else {
-                reject('Error: Something went wrong!');
-            }
-        }, 3200);
-    });
+    setTimeout(() => {
+        posts.push(post);
+    }, 3500);
 }
 
-async function init() {
-    await createPost({ title: 'Post 3', body: 'This is post three' });
-    getPosts();
-}
+// Code tạo thêm 1 post chạy trước (nhưng 3.5 sec sau mới xong)
+createPost({ title: 'Post Three', body: 'This is post three' });
 
-init();
+// Code xuất ra DOM chạy sau (nhưng chỉ 2.5 sec sau là xong)
+getPosts();
